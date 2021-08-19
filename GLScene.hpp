@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <GLUT/glut.h>
+
+#include "World.hpp"
+
 using namespace std;
 
 void GLScene(int argc, char *argv[]);
