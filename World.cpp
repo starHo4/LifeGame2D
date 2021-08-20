@@ -8,9 +8,17 @@ World::World(int w, int h)
     new_grid = Array2D(width + 2, Array(height + 2, 0));
 }
 
-void World::SetNum(int x, int y, int val)
+void World::swapGrid(){
+    swap(grid, new_grid);
+}
+
+void World::SetLife(int x, int y, int val)
 {
     grid[x + 1][y + 1] = val;
+}
+
+void World::SetNewLife(int x, int y, int val){
+    new_grid[x + 1][y + 1] = val;
 }
 
 void World::Bound()
