@@ -16,12 +16,12 @@ private:
     Array2D grid;
     Array2D new_grid;
 
-    void swapGrid());
+    void swapGrid();
 
 public:
     World(int, int);
 
-    int getNeighbors(int, int);
+    int getNeighbors(int x, int y);
 
     void getLife(int x, int y);
     void SetLife(int x, int y, int val);

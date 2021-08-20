@@ -1,5 +1,11 @@
 #include "World.hpp"
 
+void World::swapGrid()
+{
+    swap(grid, new_grid);
+}
+
+// Constructor
 World::World(int w, int h)
 {
     width = w;
@@ -8,8 +14,22 @@ World::World(int w, int h)
     new_grid = Array2D(width + 2, Array(height + 2, 0));
 }
 
-void World::swapGrid(){
-    swap(grid, new_grid);
+int World::getNeighbors(int x, int y)
+{
+    int count = 0;
+
+    // Moore neigborhood
+    for (int i = -1; i <= 1; i++)
+    {
+        for (int j = -1; j <= 1; j++)
+        {
+            if(i == 0 && j == 0){
+                continue;
+            }
+            count += grid[x + i][y + i];
+        }
+    }
+    return count;
 }
 
 void World::SetLife(int x, int y, int val)
@@ -17,7 +37,8 @@ void World::SetLife(int x, int y, int val)
     grid[x + 1][y + 1] = val;
 }
 
-void World::SetNewLife(int x, int y, int val){
+void World::SetNewLife(int x, int y, int val)
+{
     new_grid[x + 1][y + 1] = val;
 }
 
