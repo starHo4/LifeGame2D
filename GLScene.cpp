@@ -2,8 +2,12 @@
 
 #define FPS 50
 
-int window_width = 800;
-int window_height = 800;
+int Size = 800;
+
+World *world;
+
+int window_width = Size;
+int window_height = Size;
 
 void GLScene(int argc, char *argv[])
 {
@@ -25,11 +29,14 @@ void GLScene(int x, int y, int argc, char *argv[])
     glutKeyboardFunc(Keyboard);
     glutReshapeFunc(Reshape);
     glutTimerFunc(1000 / FPS, Update, 0);
+
+    Init();
 }
 
 void Display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
+    Render();
     glutSwapBuffers();
 }
 
@@ -60,7 +67,31 @@ void Reshape(int w, int h)
     gluPerspective(45, (double)w / h, 0.1, 100);
 }
 
-void Update(int val){
-    // ここを次は編集
+void Update(int val)
+{
     glutPostRedisplay();
+}
+
+void Init()
+{
+    // Init background color.
+    glClearColor((float)237 / 255, (float)237 / 255, (float)255 / 255, 1);
+
+    // Init state of world.
+    NewLife();
+}
+
+void NewLife()
+{
+    world = new World(Size, Size);
+    for (int i = 0; i < 0.6 * Size * Size; i++)
+    {
+        int x = rand() % Size + 1;
+        int y = rand() % Size + 1;
+        world->SetLife(x, y, 1);
+    }
+}
+
+void Render()
+{
 }

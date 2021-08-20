@@ -16,4 +16,9 @@ void Keyboard(unsigned char key, int x, int y);
 void Reshape(int w, int h);
 void Update(int val);
 
+void Init();
+void NewLife();
+
+void Render();
+
 #endif
