@@ -16,19 +16,21 @@ private:
     Array2D grid;
     Array2D new_grid;
 
-    void swapGrid();
+    void SwapGrid();
 
 public:
     World(int, int);
 
-    int getNeighbors(int x, int y);
+    int GetNeighbors(int x, int y);
 
-    void getLife(int x, int y);
+    void GetLife(int x, int y);
     void SetLife(int x, int y, int val);
     void SetNewLife(int x, int y, int val);
     void Bound();
 
-    void print();
+    void Update();
+
+    void Print();
 };
 
 #endif

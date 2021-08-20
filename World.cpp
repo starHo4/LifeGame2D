@@ -1,6 +1,6 @@
 #include "World.hpp"
 
-void World::swapGrid()
+void World::SwapGrid()
 {
     swap(grid, new_grid);
 }
@@ -14,7 +14,7 @@ World::World(int w, int h)
     new_grid = Array2D(width + 2, Array(height + 2, 0));
 }
 
-int World::getNeighbors(int x, int y)
+int World::GetNeighbors(int x, int y)
 {
     int count = 0;
 
@@ -23,7 +23,8 @@ int World::getNeighbors(int x, int y)
     {
         for (int j = -1; j <= 1; j++)
         {
-            if(i == 0 && j == 0){
+            if (i == 0 && j == 0)
+            {
                 continue;
             }
             count += grid[x + i][y + i];
@@ -58,7 +59,30 @@ void World::Bound()
     }
 }
 
-void World::print()
+void World::Update()
+{
+    for (int i = 1; i <= width; i++)
+    {
+        for (int j = 1; j <= height; j++)
+        {
+            int num = GetNeighbors(i, j);
+            switch (num)
+            {
+            case 2:
+            case 3:
+                SetNewLife(i, j, 1);
+                break;
+
+            default:
+                SetNewLife(i, j, 0);
+                break;
+            }
+        }
+    }
+    SwapGrid();
+}
+
+void World::Print()
 {
     // cout << grid->size() << endl;
     for (int i = 0; i < grid.size(); i++)
