@@ -1,3 +1,4 @@
+// Completed on August 21st by starHo4.
 #ifndef __GLScene__
 #define __GLScene__
 

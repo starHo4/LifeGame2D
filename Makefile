@@ -1,3 +1,4 @@
+# Completed on August 21st by starHo4.
 OBJS = main.o GLScene.o World.o
 CC = g++
 FRAMEWORK = -framework OpenGL -framework GLUT

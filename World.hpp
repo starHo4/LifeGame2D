@@ -1,3 +1,4 @@
+// Completed on August 21st by starHo4.
 #ifndef __World__
 #define __World__
 
@@ -19,11 +20,16 @@ private:
     void SwapGrid();
 
 public:
+    // Constructor
     World(int, int);
+
+    // Getter
+    int GetWidth();
+    int GetHeight();
 
     int GetNeighbors(int x, int y);
 
-    void GetLife(int x, int y);
+    int GetLife(int x, int y);
     void SetLife(int x, int y, int val);
     void SetNewLife(int x, int y, int val);
     void Bound();

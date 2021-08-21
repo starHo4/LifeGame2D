@@ -1,3 +1,4 @@
+// Completed on August 21st by starHo4.
 #include "World.hpp"
 
 void World::SwapGrid()
@@ -14,6 +15,17 @@ World::World(int w, int h)
     new_grid = Array2D(width + 2, Array(height + 2, 0));
 }
 
+// Getter
+int World::GetWidth()
+{
+    return width;
+}
+
+int World::GetHeight()
+{
+    return height;
+}
+
 int World::GetNeighbors(int x, int y)
 {
     int count = 0;
@@ -27,20 +39,25 @@ int World::GetNeighbors(int x, int y)
             {
                 continue;
             }
-            count += grid[x + i][y + i];
+            count += grid[x + i][y + j];
         }
     }
     return count;
 }
 
+int World::GetLife(int x, int y)
+{
+    return grid[x][y];
+}
+
 void World::SetLife(int x, int y, int val)
 {
-    grid[x + 1][y + 1] = val;
+    grid[x][y] = val;
 }
 
 void World::SetNewLife(int x, int y, int val)
 {
-    new_grid[x + 1][y + 1] = val;
+    new_grid[x][y] = val;
 }
 
 void World::Bound()
@@ -61,21 +78,23 @@ void World::Bound()
 
 void World::Update()
 {
+    // Bound();
     for (int i = 1; i <= width; i++)
     {
         for (int j = 1; j <= height; j++)
         {
             int num = GetNeighbors(i, j);
-            switch (num)
+            if (num == 2)
             {
-            case 2:
-            case 3:
+                SetNewLife(i, j, GetLife(i, j));
+            }
+            if (num == 3)
+            {
                 SetNewLife(i, j, 1);
-                break;
-
-            default:
+            }
+            if (num != 2 && num != 3)
+            {
                 SetNewLife(i, j, 0);
-                break;
             }
         }
     }
